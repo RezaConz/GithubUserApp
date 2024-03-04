@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -15,6 +17,36 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val properties = Properties()
+        val apiKey: String
+        val baseUrl:String
+
+        val localPropertiesFile = project.rootProject.file("local.properties")
+        apiKey = if (localPropertiesFile.exists()) {
+            properties.load(localPropertiesFile.inputStream())
+            properties.getProperty("API_KEY") ?: ""
+        } else {
+            System.getenv("API_KEY") ?: ""
+        }
+
+        baseUrl = if (localPropertiesFile.exists()) {
+            properties.load(localPropertiesFile.inputStream())
+            properties.getProperty("BASE_URL") ?: ""
+        } else {
+            System.getenv("BASE_URL") ?: ""
+        }
+
+        buildConfigField(
+            "String",
+            "API_KEY",
+            "\"$apiKey\""
+        )
+        buildConfigField(
+            "String",
+            "BASE_URL",
+            "\"$baseUrl\""
+        )
     }
 
     buildTypes {
@@ -35,6 +67,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -62,6 +95,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 
     implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     implementation("com.google.android.material:material:1.11.0")

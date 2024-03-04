@@ -1,9 +1,10 @@
-package com.example.githubuserapp.ui.detail.tabs
+package com.example.githubuserapp.ui.detail.tabs.adapter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.githubuserapp.ui.detail.tabs.FollowFragment
 
 class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
 

@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubuserapp.GithubAdapter
+import com.example.githubuserapp.ui.main.adapter.GithubAdapter
 import com.example.githubuserapp.data.response.Items
 import com.example.githubuserapp.databinding.ActivityMainBinding
 

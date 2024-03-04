@@ -1,4 +1,4 @@
-package com.example.githubuserapp.ui.detail.tabs
+package com.example.githubuserapp.ui.detail.tabs.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

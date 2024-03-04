@@ -1,4 +1,4 @@
-package com.example.githubuserapp
+package com.example.githubuserapp.ui.main.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import com.example.githubuserapp.data.response.Items
 import com.example.githubuserapp.databinding.GithubUserItemBinding
 import com.example.githubuserapp.ui.detail.DetailActivity
 
-class GithubAdapter:ListAdapter<Items,GithubAdapter.MyViewHolder>(DIFF_CALLBACK) {
-    class MyViewHolder (val binding: GithubUserItemBinding) : RecyclerView.ViewHolder(binding.root){
+class GithubAdapter:ListAdapter<Items, GithubAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    class MyViewHolder (private val binding: GithubUserItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item : Items){
             Glide.with(itemView.context)
                 .load(item.avatarUrl)
