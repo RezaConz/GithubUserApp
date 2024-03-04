@@ -5,5 +5,6 @@
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
 
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
+        <item name="tabTextColor">@color/white</item>
     </style>
 </resources>

@@ -23,19 +23,13 @@ android {
         val baseUrl:String
 
         val localPropertiesFile = project.rootProject.file("local.properties")
-        apiKey = if (localPropertiesFile.exists()) {
-            properties.load(localPropertiesFile.inputStream())
-            properties.getProperty("API_KEY") ?: ""
-        } else {
-            System.getenv("API_KEY") ?: ""
-        }
 
-        baseUrl = if (localPropertiesFile.exists()) {
-            properties.load(localPropertiesFile.inputStream())
-            properties.getProperty("BASE_URL") ?: ""
-        } else {
-            System.getenv("BASE_URL") ?: ""
-        }
+        properties.load(localPropertiesFile.inputStream())
+        apiKey = properties.getProperty("API_KEY")
+        
+        properties.load(localPropertiesFile.inputStream())
+        baseUrl = properties.getProperty("BASE_URL")
+
 
         buildConfigField(
             "String",
