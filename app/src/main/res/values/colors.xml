@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="md_theme_light_inversePrimary">#CFBCFF</color>
     <color name="md_theme_dark_inversePrimary">#6750A4</color>
+    <color name="material_dynamic_primary0">#CFBCFF</color>
 </resources>

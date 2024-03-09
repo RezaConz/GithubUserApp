@@ -16,7 +16,9 @@
         android:hint="@string/searchbar_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/option_menu"
+        style="@style/Base.Theme.GithubUserApp"/>
 
     <com.google.android.material.search.SearchView
         android:id="@+id/searchView"

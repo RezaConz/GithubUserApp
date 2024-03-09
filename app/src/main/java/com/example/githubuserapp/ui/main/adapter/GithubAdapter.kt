@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.githubuserapp.data.response.Items
+import com.example.githubuserapp.data.remote.response.Items
 import com.example.githubuserapp.databinding.GithubUserItemBinding
 import com.example.githubuserapp.ui.detail.DetailActivity
 
@@ -32,7 +32,8 @@ class GithubAdapter:ListAdapter<Items, GithubAdapter.MyViewHolder>(DIFF_CALLBACK
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra("USER", listUser.login)
+            intent.putExtra(DetailActivity.USER, listUser.login)
+            intent.putExtra(DetailActivity.KEY_ID,listUser.id)
             holder.itemView.context.startActivity(intent)
         }
     }
@@ -52,8 +53,6 @@ class GithubAdapter:ListAdapter<Items, GithubAdapter.MyViewHolder>(DIFF_CALLBACK
             ): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
-
 }

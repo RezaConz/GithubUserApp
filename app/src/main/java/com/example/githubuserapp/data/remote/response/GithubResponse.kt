@@ -1,4 +1,4 @@
-package com.example.githubuserapp.data.response
+package com.example.githubuserapp.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -34,39 +34,19 @@ data class Items(
 	@field:SerializedName("followers_url")
 	val followersUrl: String,
 
-	@field:SerializedName("type")
-	val type: String,
-
 	@field:SerializedName("url")
 	val url: String,
 
 	@field:SerializedName("subscriptions_url")
 	val subscriptionsUrl: String,
 
-	@field:SerializedName("score")
-	val score: Int,
-
-	@field:SerializedName("received_events_url")
-	val receivedEventsUrl: String,
-
 	@field:SerializedName("avatar_url")
 	val avatarUrl: String,
-
-	@field:SerializedName("events_url")
-	val eventsUrl: String,
 
 	@field:SerializedName("html_url")
 	val htmlUrl: String,
 
-	@field:SerializedName("site_admin")
-	val siteAdmin: Boolean,
-
 	@field:SerializedName("id")
 	val id: Int,
 
-	@field:SerializedName("node_id")
-	val nodeId: String,
-
-	@field:SerializedName("organizations_url")
-	val organizationsUrl: String
 )

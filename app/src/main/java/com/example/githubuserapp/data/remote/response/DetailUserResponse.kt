@@ -1,7 +1,6 @@
-package com.example.githubuserapp.data.response
+package com.example.githubuserapp.data.remote.response
 
 import com.google.gson.annotations.SerializedName
-
 data class DetailUserResponse(
 
 	@field:SerializedName("gists_url")

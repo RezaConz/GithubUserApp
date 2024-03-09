@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GithubUserApp</string>
+    <string name="app_name">GithubUser</string>
     <string name="name_person">name</string>
     <string name="searchbar_hint">Masukan Nama</string>
     <string name="followers">0 Followers</string>
@@ -9,4 +9,12 @@
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
     <string name="content_tab_text">This is Tab %1$d</string>
+    <string name="follower_amnt">%s Followers</string>
+    <string name="following_amnt">%s Following</string>
+    <string name="favorite">favorite</string>
+    <string name="setting">setting</string>
+    <string name="dark_mode">Dark Mode</string>
+
+    <string name="hapus_fav">%s deleted from favorite</string>
+    <string name="tambah_fav">%s has been added to favorite</string>
 </resources>

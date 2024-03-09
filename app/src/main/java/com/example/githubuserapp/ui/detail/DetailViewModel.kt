@@ -1,48 +1,37 @@
 package com.example.githubuserapp.ui.detail
 
-import android.annotation.SuppressLint
-import android.content.ContentValues
-import android.util.Log
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.githubuserapp.data.response.DetailUserResponse
-import com.example.githubuserapp.data.retrofit.ApiConfig
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.githubuserapp.data.local.entity.FavoriteUser
+import com.example.githubuserapp.data.remote.response.DetailUserResponse
+import com.example.githubuserapp.data.remote.retrofit.ApiConfig
+import com.example.githubuserapp.repository.FavoriteRepository
+import com.example.githubuserapp.repository.GithubRepository
 
-class DetailViewModel :ViewModel(){
+class DetailViewModel(application: Application) :ViewModel(){
 
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
+    private val mFavoriteRepository: FavoriteRepository = FavoriteRepository(application)
+    private val apiService = ApiConfig.getApiService()
 
-    private val _user = MutableLiveData<DetailUserResponse?>()
-    val user: MutableLiveData<DetailUserResponse?> = _user
-
-    fun detailUser(receivedData:String) {
-        _isLoading.value = true
-        val client = ApiConfig.getApiService().getDetailUser(receivedData)
-        client.enqueue(object : Callback<DetailUserResponse> {
-            @SuppressLint("SetTextI18n")
-            override fun onResponse(
-                call: Call<DetailUserResponse>,
-                response: Response<DetailUserResponse>
-            ) {
-                _isLoading.value = false
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null) {
-                        _user.value = responseBody
-                    }
-                } else {
-                    Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
-                }
-            }
-            override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
-                _isLoading.value = false
-                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
-            }
-        })
+    private val githubRepository: GithubRepository = GithubRepository.getInstance(apiService)
+    fun insert(favUser: FavoriteUser) {
+        mFavoriteRepository.insert(favUser)
     }
+
+    fun delete(favUser: FavoriteUser) {
+        mFavoriteRepository.delete(favUser)
+    }
+
+    fun getFavoriteByUsername(username: String): LiveData<FavoriteUser?> {
+        return mFavoriteRepository.getUserFavoriteByUsername(username)
+    }
+
+    fun detailUser(search:String) = githubRepository.detailUser(search)
+
+    fun loading(): LiveData<Boolean> = githubRepository.isLoading
+
+    fun user():MutableLiveData<DetailUserResponse?> = githubRepository.detailUser
+
 }
