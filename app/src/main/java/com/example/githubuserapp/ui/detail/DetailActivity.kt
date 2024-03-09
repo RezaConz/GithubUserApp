@@ -17,8 +17,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-    val detailViewModel: DetailViewModel by viewModels()
-    var receivedData: String? = null
+    private val detailViewModel: DetailViewModel by viewModels()
+    private var receivedData: String? = null
 
     companion object {
         @StringRes
@@ -26,6 +26,8 @@ class DetailActivity : AppCompatActivity() {
             R.string.tab_text_1,
             R.string.tab_text_2,
         )
+
+        const val USER = "user"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,16 +36,18 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val receivedIntent = intent
-        if (receivedIntent != null && receivedIntent.hasExtra("USER")) {
-            receivedData = receivedIntent.getStringExtra("USER").toString()
+        if (receivedIntent != null && receivedIntent.hasExtra(USER)) {
+            receivedData = receivedIntent.getStringExtra(USER).toString()
         }
 
         detailViewModel.isLoading.observe(this) {
             showLoading(it)
         }
 
-        detailViewModel.user.observe(this){
-            setDetailData(it!!)
+        detailViewModel.user.observe(this){user ->
+            user?.let {
+                setDetailData(it)
+            }
         }
 
         detailViewModel.detailUser(receivedData.toString())
@@ -51,14 +55,14 @@ class DetailActivity : AppCompatActivity() {
         receivedData?.let { getViewPager(it) }
     }
 
-    fun setDetailData(responseBody: DetailUserResponse){
+    private fun setDetailData(responseBody: DetailUserResponse){
         binding.tvNameDetail.text = responseBody.name
         binding.tvUsername.text = responseBody.login
         Glide.with(this@DetailActivity)
             .load(responseBody.avatarUrl)
             .into(binding.ivImageProfile)
-        binding.tvFollowers.text = "${responseBody.followers} Followers"
-        binding.tvFollowing.text = "${responseBody.following} Following"
+        binding.tvFollowers.text = getString(R.string.follower_amnt,responseBody.followers.toString())
+        binding.tvFollowing.text = getString(R.string.following_amnt,responseBody.following.toString())
     }
 
 

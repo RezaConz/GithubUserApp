@@ -46,7 +46,9 @@ class FollowFragment : Fragment() {
         binding.rvListFollow.addItemDecoration(itemDecoration)
 
         followViewModel.user.observe(viewLifecycleOwner) { user ->
-            setGithubData(user!!)
+            user?.let { userData ->
+                setGithubData(userData)
+            }
         }
 
         followViewModel.isLoading.observe(viewLifecycleOwner) {

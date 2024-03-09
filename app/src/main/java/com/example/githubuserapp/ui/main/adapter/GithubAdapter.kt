@@ -32,7 +32,7 @@ class GithubAdapter:ListAdapter<Items, GithubAdapter.MyViewHolder>(DIFF_CALLBACK
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra("USER", listUser.login)
+            intent.putExtra(DetailActivity.USER, listUser.login)
             holder.itemView.context.startActivity(intent)
         }
     }

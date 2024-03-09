@@ -9,4 +9,6 @@
     <string name="tab_text_1">Followers</string>
     <string name="tab_text_2">Following</string>
     <string name="content_tab_text">This is Tab %1$d</string>
+    <string name="follower_amnt">%s Followers</string>
+    <string name="following_amnt">%s Following</string>
 </resources>

@@ -8,7 +8,7 @@ import com.example.githubuserapp.ui.detail.tabs.FollowFragment
 
 class SectionsPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
 
-  var username1: String = ""
+  private var username1: String = ""
 
     override fun createFragment(position: Int): Fragment {
         val fragment = FollowFragment()

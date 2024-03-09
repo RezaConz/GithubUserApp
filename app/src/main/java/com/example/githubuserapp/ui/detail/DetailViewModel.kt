@@ -1,6 +1,5 @@
 package com.example.githubuserapp.ui.detail
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -24,7 +23,6 @@ class DetailViewModel :ViewModel(){
         _isLoading.value = true
         val client = ApiConfig.getApiService().getDetailUser(receivedData)
         client.enqueue(object : Callback<DetailUserResponse> {
-            @SuppressLint("SetTextI18n")
             override fun onResponse(
                 call: Call<DetailUserResponse>,
                 response: Response<DetailUserResponse>
