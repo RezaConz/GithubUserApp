@@ -12,7 +12,7 @@ class MainViewModel(private val pref: SettingPreferences) :ViewModel() {
 
     private val apiService = ApiConfig.getApiService()
 
-    private val githubRepository: GithubRepository = GithubRepository.getInstance(apiService)
+    private val githubRepository: GithubRepository = GithubRepository(apiService)
     fun getItems(search:String) = githubRepository.findUsers(search)
 
     fun user():LiveData<List<Items>> = githubRepository.listUser

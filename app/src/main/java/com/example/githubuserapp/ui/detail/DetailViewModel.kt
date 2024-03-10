@@ -15,7 +15,7 @@ class DetailViewModel(application: Application) :ViewModel(){
     private val mFavoriteRepository: FavoriteRepository = FavoriteRepository(application)
     private val apiService = ApiConfig.getApiService()
 
-    private val githubRepository: GithubRepository = GithubRepository.getInstance(apiService)
+    private val githubRepository: GithubRepository = GithubRepository(apiService)
     fun insert(favUser: FavoriteUser) {
         mFavoriteRepository.insert(favUser)
     }

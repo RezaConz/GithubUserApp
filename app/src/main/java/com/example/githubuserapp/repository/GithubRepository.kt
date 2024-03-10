@@ -12,9 +12,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GithubRepository private constructor(
+class GithubRepository (
     private val apiService: ApiService
 ){
+
     fun findUsers(search:String) {
         _isLoading.value = true
         val client = apiService.getGithub(search)
@@ -74,14 +75,4 @@ class GithubRepository private constructor(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object {
-        @Volatile
-        private var instance: GithubRepository? = null
-        fun getInstance(
-            apiService: ApiService
-        ): GithubRepository =
-            instance ?: synchronized(this) {
-                instance ?: GithubRepository(apiService)
-            }.also { instance = it }
-    }
 }
